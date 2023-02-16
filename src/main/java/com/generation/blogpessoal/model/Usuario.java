@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuarios")
-public class Usuário {
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +37,7 @@ public class Usuário {
 
     /* Métodos Construtores  */
 
-    public Usuário(Long id, String nome, String usuario, String senha, String foto) {
+    public Usuario(Long id, String nome, String usuario, String senha, String foto) {
         this.id = id;
         this.nome = nome;
         this.usuario = usuario;
@@ -45,7 +45,7 @@ public class Usuário {
         this.foto = foto;
     }
 
-    public Usuário() { }
+    public Usuario() { }
 
     /* Insira os Getters and Setters */
 

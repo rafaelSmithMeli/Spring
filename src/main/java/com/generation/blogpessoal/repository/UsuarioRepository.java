@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.repository.query.Param;
 
-import com.generation.blogpessoal.model.Usuário;
+import com.generation.blogpessoal.model.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuário, Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    public Optional<Usuário> findByUsuario(String usuario);
-    public List<Usuário> findAllByNomeContainingIgnoreCase(@Param("nome") String nome);
+    public Optional<Usuario> findByUsuario(String usuario);
+    public List<Usuario> findAllByNomeContainingIgnoreCase(@Param("nome") String nome);
 
 }

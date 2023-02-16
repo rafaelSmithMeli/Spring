@@ -3,7 +3,7 @@ package com.generation.blogpessoal.service;
 import java.nio.charset.Charset;
 import java.util.Optional;
 
-import com.generation.blogpessoal.model.Usuário;
+import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.model.UsuarioLogin;
 import com.generation.blogpessoal.repository.UsuarioRepository;
 
@@ -20,30 +20,30 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Optional<Usuário> cadastrarUsuario(Usuário usuario) {
+    public Optional<Usuario> cadastrarUsuario(Usuario Usuario) {
 
-        if (usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent())
+        if (usuarioRepository.findByUsuario(Usuario.getUsuario()).isPresent())
             return Optional.empty();
 
-        usuario.setSenha(criptografarSenha(usuario.getSenha()));
+        Usuario.setSenha(criptografarSenha(Usuario.getSenha()));
 
-        return Optional.of(usuarioRepository.save(usuario));
+        return Optional.of(usuarioRepository.save(Usuario));
 
     }
 
-    public Optional<Usuário> atualizarUsuario(Usuário usuario) {
+    public Optional<Usuario> atualizarUsuario(Usuario Usuario) {
 
-        if(usuarioRepository.findById(usuario.getId()).isPresent()) {
+        if(usuarioRepository.findById(Usuario.getId()).isPresent()) {
 
-            Optional<Usuário> buscaUsuario = usuarioRepository.findByUsuario(usuario.getUsuario());
+            Optional<Usuario> buscaUsuario = usuarioRepository.findByUsuario(Usuario.getUsuario());
 
-            if ( (buscaUsuario.isPresent()) && ( buscaUsuario.get().getId() != usuario.getId()))
+            if ( (buscaUsuario.isPresent()) && ( buscaUsuario.get().getId() != Usuario.getId()))
                 throw new ResponseStatusException(
                         HttpStatus.BAD_REQUEST, "Usuário já existe!", null);
 
-            usuario.setSenha(criptografarSenha(usuario.getSenha()));
+            Usuario.setSenha(criptografarSenha(Usuario.getSenha()));
 
-            return Optional.ofNullable(usuarioRepository.save(usuario));
+            return Optional.ofNullable(usuarioRepository.save(Usuario));
 
         }
 
@@ -53,7 +53,7 @@ public class UsuarioService {
 
     public Optional<UsuarioLogin> autenticarUsuario(Optional<UsuarioLogin> usuarioLogin) {
 
-        Optional<Usuário> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
+        Optional<Usuario> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
 
         if (usuario.isPresent()) {
 

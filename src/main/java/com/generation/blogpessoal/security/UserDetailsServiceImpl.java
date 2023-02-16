@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import com.generation.blogpessoal.model.Usuário;
+import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.repository.UsuarioRepository;
 
 @Service
@@ -19,7 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-        Optional<Usuário> usuario = usuarioRepository.findByUsuario(userName);
+        Optional<Usuario> usuario = usuarioRepository.findByUsuario(userName);
 
         if (usuario.isPresent())
             return new UserDetailsImpl(usuario.get());
